@@ -1,0 +1,5 @@
+/node_modules
+/erc721.contract
+/erc721.wasm
+/metadata.json
+/package-lock.json
