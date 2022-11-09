@@ -1,7 +1,16 @@
-Step1. Clone this repo <br>
-Step2. cd to this repo and open it in VScode run 'npm i'<br>
-Step3. paste the contents of the '.contract' file into abi.js and format the contents using the prettier extention of VScode (right click>format document with>prettier)<br>
-Step4. in deploy.js:ln15 change the input parameter in wsProvider (input the endpoint for the chain you want to connect)<br>
-Step5. in deploy.js:ln38 change the PHRASE variable (input the mnemonic phrase of an account holding some gas fees)<br>
-Step6. run 'node deploy.js'<br>
-Step7. look at the magic happening<br>
+# WASM Contract Deployment
+### Steps
+1. Clone the repo 
+    ```
+    git clone https://github.com/5ire-tech/wasm-contract-deployment.git
+2. Go to inside the folder
+    ``` 
+    cd wasm-contract-deployment
+3. Insatll the required dependencies
+    ```
+    npm i
+4.  In `deploy.js:ln15` change the input parameter in wsProvider (input the endpoint for the chain you want to connect)
+5. In `deploy.js:ln38` change the PHRASE variable (input the mnemonic phrase of an account holding some gas fees)
+6. Run code using   
+    ```
+    npm run
