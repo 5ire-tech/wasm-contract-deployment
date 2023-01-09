@@ -6,7 +6,7 @@
 2. Go inside the folder
     ``` 
     cd wasm-contract-deployment
-3. Insatll the required dependencies
+3. Install the required dependencies
     ```
     npm i
 4.  In `deploy.js:ln15` change the input parameter in wsProvider (input the endpoint for the chain you want to connect)
