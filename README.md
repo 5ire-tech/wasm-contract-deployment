@@ -9,8 +9,8 @@
 3. Install the required dependencies
     ```
     npm i
-4.  In `deploy.js:ln15` change the input parameter in wsProvider (input the endpoint for the chain you want to connect)
-5. In `deploy.js:ln38` change the PHRASE variable (input the mnemonic phrase of the wallet having some 5ire coins to pay the transaction fee)
-6. Run code using   
+
+4. In `deploy.js:ln38` change the PHRASE variable (input the mnemonic phrase of the wallet having some 5ire coins to pay the transaction fee)
+5. Run code using   
     ```
-    npm run
+    node deploy.js
