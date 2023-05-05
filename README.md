@@ -11,11 +11,13 @@
 2. Go inside the folder
     ``` 
     cd wasm-contract-deployment
+    ```
 3. Install the required dependencies
     ```
     yarn install
-
+    ```
 4. In `deploy.js:ln30` change the PHRASE variable (input the mnemonic phrase of the wallet having some 5ire coins to pay the transaction fee)
 5. Run code using   
     ```
     node deploy.js
+    ```
