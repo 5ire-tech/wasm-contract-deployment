@@ -15,7 +15,7 @@
     ```
     yarn install
 
-4. In `deploy.js:ln34` change the PHRASE variable (input the mnemonic phrase of the wallet having some 5ire coins to pay the transaction fee)
+4. In `deploy.js:ln30` change the PHRASE variable (input the mnemonic phrase of the wallet having some 5ire coins to pay the transaction fee)
 5. Run code using   
     ```
     node deploy.js
