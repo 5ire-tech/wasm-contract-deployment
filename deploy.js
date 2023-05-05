@@ -4,10 +4,6 @@ import { ApiPromise, WsProvider, Keyring} from '@polkadot/api';
 // import .contract file as json string
 import { json } from "./abi.js"
 
-import {
-  mnemonicToMiniSecret,
-  naclKeypairFromSeed,
-} from "@polkadot/util-crypto";
 
 try {
   let address; // variable for storing the address of the deployed contract 
@@ -32,10 +28,8 @@ try {
   
   // adding fire account for paying the gas fee
   const PHRASE = 'negative cheap cherry uncover absurd angle swarm armor tuna lounge hurdle lawsuit';
-  const seedUser = mnemonicToMiniSecret(PHRASE);
   const keyring = new Keyring({ type: "ed25519" });
-  const userKeyring = keyring.addFromPair(naclKeypairFromSeed(seedUser));
-
+  const userKeyring = keyring.addFromMnemonic(PHRASE);
   // parameters for constructor function inside the contract
   let params = [];
   params.push(userKeyring.publicKey);
@@ -53,7 +47,6 @@ try {
         value: value
       }, ...params)
     : null;
-
     // code deploy
     const unsub = await transferMethod.signAndSend(userKeyring, async (response) => {
       if (response.status.isInBlock || response.status.isFinalized) {
