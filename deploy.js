@@ -21,9 +21,9 @@ try {
   
   // gas limit for deployment
   const gasLimit = 100000n * 1000000n
-  
-  // endoement
-  const value = 100n * 1000n
+
+  // endowment
+  const value = 0;
   
   
   // adding fire account for paying the gas fee
@@ -31,24 +31,23 @@ try {
   const keyring = new Keyring({ type: "ed25519" });
   const userKeyring = keyring.addFromMnemonic(PHRASE);
   // parameters for constructor function inside the contract
-  let params = [];
-  params.push(userKeyring.publicKey);
-  params.push(userKeyring.publicKey);
 
+  // Constructor New
   let constructorIndex = 0;
 
   try {
 
     // upload wasm blob
-    let transferMethod = code && contractAbi?.constructors[constructorIndex]?.method && value
+    let newMethod = code && contractAbi?.constructors[constructorIndex]?.method && value
       ? code.tx[contractAbi.constructors[constructorIndex].method]({
         gasLimit: gasLimit,
         storageDepositLimit: null,
         value: value
-      }, ...params)
+      })
     : null;
+    
     // code deploy
-    const unsub = await transferMethod.signAndSend(userKeyring, async (response) => {
+    const unsub = await newMethod.signAndSend(userKeyring, async (response) => {
       if (response.status.isInBlock || response.status.isFinalized) {
         address = response.contract.address.toString();
         console.log("address ====== ", address);

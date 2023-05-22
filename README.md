@@ -21,3 +21,9 @@
     ```
     node deploy.js
     ```
+
+### Resources
+
+ERC721 Smart Contract template written by ink!
+
+https://github.com/paritytech/ink-examples/tree/main/erc721
