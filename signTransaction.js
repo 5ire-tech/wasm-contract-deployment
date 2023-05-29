@@ -1,9 +1,11 @@
 import { CodePromise, Abi, ContractPromise } from '@polkadot/api-contract';
 import { ApiPromise, WsProvider, Keyring } from '@polkadot/api';
-
+import { BN, BN_ONE } from '@polkadot/util';
 // import .contract file as json string
 import { json } from "./abi.js"
 
+const MAX_CALL_WEIGHT = new BN(500_000_000_000).isub(BN_ONE);
+const PROOFSIZE = new BN(1_000_000);
 
 try {
     let address; // variable for storing the address of the deployed contract 
@@ -14,8 +16,11 @@ try {
 
 
     // gas limit for deployment
-    const gasLimit = 100000n * 1000000n
-
+    //const gasLimit = 100000n * 1000000n
+    const gasLimit = api.registry.createType('WeightV2', {
+        refTime: MAX_CALL_WEIGHT,
+        proofSize: PROOFSIZE,
+      });
 
 
     // adding fire account for paying the gas fee
@@ -33,7 +38,7 @@ try {
         {
             gasLimit: gasLimit,
             storageDepositLimit: null,
-        }, {owner: '5GhS8ddBoA9pbUz1Z49Wh9Kx36MoHLZrVTNk2dj6R93hqd6m'}
+        }, '5GhS8ddBoA9pbUz1Z49Wh9Kx36MoHLZrVTNk2dj6R93hqd6m'
     );
     // check if the call was successful
     if (result.isOk) {
