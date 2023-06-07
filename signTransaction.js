@@ -19,7 +19,7 @@ try {
     const gasLimit = api.registry.createType('WeightV2', {
         refTime: MAX_CALL_WEIGHT,
         proofSize: PROOFSIZE,
-      });
+    });
 
 
     // adding fire account for paying the gas fee
@@ -32,21 +32,25 @@ try {
     const contract = new ContractPromise(api, json, '5DtUeGKHRjSpk79R5GuD6iuH67bZwkXXxRbtsWXgih2BvGG6');
 
     
-    // Query value from contract
-    const { result, output } = await contract.query.balanceOf(
-        userKeyring.address,
-        {
-            gasLimit: gasLimit,
-            storageDepositLimit: null,
-        }, '5GhS8ddBoA9pbUz1Z49Wh9Kx36MoHLZrVTNk2dj6R93hqd6m'
+    let tokenId = 2;
+    // Mint tokenId from contract
+    const tx = contract.tx.mint({
+        gasLimit: gasLimit,
+        storageDepositLimit: null,
+    }, tokenId);
+
+    const unsub = await tx.signAndSend(
+        userKeyring,
+        (result) => {
+            if (result.status.isInBlock || result.status.isFinalized) {
+                console.log("Block finalized");
+                unsub();
+            }
+        }
     );
-    // check if the call was successful
-    if (result.isOk) {
-        // output the return value
-        console.log('Success -> Value:', output.toHuman());
-    } else {
-        console.error('Error', result.asErr);
-    }
+
+
+    
 }
 catch (err) {
     console.log("error", err.toString())

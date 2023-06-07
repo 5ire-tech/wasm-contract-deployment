@@ -38,14 +38,13 @@ try {
   try {
 
     // upload wasm blob
-    let newMethod = code && contractAbi?.constructors[constructorIndex]?.method && value
+    let newMethod = code && contractAbi?.constructors[constructorIndex]?.method
       ? code.tx[contractAbi.constructors[constructorIndex].method]({
         gasLimit: gasLimit,
         storageDepositLimit: null,
         value: value
       })
     : null;
-    
     // code deploy
     const unsub = await newMethod.signAndSend(userKeyring, async (response) => {
       if (response.status.isInBlock || response.status.isFinalized) {
