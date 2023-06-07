@@ -45,6 +45,7 @@ try {
         value: value
       })
     : null;
+
     // code deploy
     const unsub = await newMethod.signAndSend(userKeyring, async (response) => {
       if (response.status.isInBlock || response.status.isFinalized) {
