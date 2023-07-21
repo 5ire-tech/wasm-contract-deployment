@@ -9,7 +9,7 @@ try {
   let address; // variable for storing the address of the deployed contract 
 
   // API creation for connection to the chain
-  const wsProvider = new WsProvider('wss://wss-testnet.5ire.network/');
+  const wsProvider = new WsProvider('wss://wss-ga-testnet.5ire.network');
   const api = await ApiPromise.create({ provider: wsProvider });
 
   
@@ -28,7 +28,7 @@ try {
   
   // adding fire account for paying the gas fee
   const PHRASE = 'negative cheap cherry uncover absurd angle swarm armor tuna lounge hurdle lawsuit';
-  const keyring = new Keyring({ type: "ed25519" });
+  const keyring = new Keyring({ type: "sr25519" });
   const userKeyring = keyring.addFromMnemonic(PHRASE);
   // parameters for constructor function inside the contract
 
